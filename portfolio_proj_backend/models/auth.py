@@ -1,7 +1,8 @@
 """this is my auth system to ckeck for both login and sign up"""
-import json 
+import json
 import os
 from .user import User
+
 
 class AuthSystem:
     """contains all methods for sign up and login"""
@@ -17,7 +18,7 @@ class AuthSystem:
             with open(self.filepath, 'w') as file:
                 json.dump({}, file)
             return {}
-         
+
         with open(self.filepath, 'r') as file:
             users_dict = {}
             data = json.load(file)
@@ -25,7 +26,7 @@ class AuthSystem:
                 user_obj = User.from_dict(info)
                 users_dict[email] = user_obj
             return users_dict
-        
+
     def save_users(self):
         """this method stores the users in file"""
         with open(self.filepath, 'w') as file:
@@ -42,3 +43,14 @@ class AuthSystem:
         self.save_users()
         return "Sign up successful"
 
+    def login(self, email, password):
+        """checks for user login """
+        for key, info in self.users.items():
+            if key == email:
+                data = info.__dict__
+                if data['password'] == password:
+                    return data
+                else:
+                    return "Incorrect password or email"
+
+        return "Email not registered, please sign up"
