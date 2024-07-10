@@ -1,9 +1,9 @@
 ## Scheduler(TODO) APPLICATION 
 
-# Authors : Precious Appiah
+Authors : Precious Appiah
 
-# Link to deployed sites :
+Link to deployed sites :
 
-# Link to ...
+Link to ...
 
 installation: pip install Flask 
