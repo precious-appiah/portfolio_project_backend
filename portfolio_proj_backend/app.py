@@ -22,3 +22,46 @@ def signup():
         return jsonify({'error': result}), 400
     
     return jsonify({'message': result}), 200
+
+@app.route('/create_task', methods=['POST'])
+def create_task():
+    """create task endpoint"""
+    data = request.get_json()
+    email= data.get('email')
+    task = data.get('task')
+    id = data.get('id')
+    status = data.get('status')
+
+    result = user.add_task(email, task,id, status)
+    return jsonify({'message': result}), 200
+
+@app.route('/get_tasks', methods=['GET'])
+def get_tasks():
+    """get users tasks"""
+    data = request.get_json()
+    email = data.get('email')
+    result = user.get_tasks(email)
+    return jsonify({'message': result})
+
+@app.route('/update_task', methods=['UPDATE'])
+def update_task():
+    """update task"""
+    data = request.get_json()
+    email = data.get('email')
+    id = data.get('id')
+    task = data.get('title')
+    status = data.get('status')
+    result = user.update_task(email, id, task, status)
+    return jsonify({'message': result}), 200
+
+@app.route('/delete', methods=['DELETE'])
+def delete_task():
+    """delete task"""
+    data = request.get_json()
+    email = data.get('email')
+    id= data.get('id')
+    result = user.remove_task(email, id)
+    return jsonify({'message': result}), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)  # Run the app in debug mode
