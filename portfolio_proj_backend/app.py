@@ -56,7 +56,7 @@ def get_tasks():
     result = user.get_tasks(email)
     return jsonify({'message': result})
 
-@app.route('/update_task', methods=['UPDATE'])
+@app.route('/update_task', methods=['PUT'])
 def update_task():
     """update task"""
     data = request.get_json()
