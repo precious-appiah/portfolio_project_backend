@@ -23,6 +23,17 @@ def signup():
     
     return jsonify({'message': result}), 200
 
+@app.route('/login', methods=['POST'])
+def login():
+    """this is the sign up endpoint"""
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+    
+    result = user.login(email, password)
+    
+    return jsonify({'message': result}), 200
+
 @app.route('/create_task', methods=['POST'])
 def create_task():
     """create task endpoint"""
