@@ -48,7 +48,7 @@ def create_task():
     result = user.add_task(email, task,id, status)
     return jsonify({'message': result}), 200
 
-@app.route('/get_tasks', methods=['GET'])
+@app.route('/get_tasks', methods=['POST'])
 def get_tasks():
     """get users tasks"""
     data = request.get_json()
