@@ -21,9 +21,9 @@ def signup():
     result = user.signup(email, username, password, confirm_pass)
 
     if result == 'Email already taken' or result== 'Passwords don\'t match':
-        return jsonify({'error': result}), 400
+        return jsonify({'error': result, 'res': "11"}), 400
     
-    return jsonify({'message': result, res: "00"}), 200
+    return jsonify({'message': result, 'res': "00"}), 200
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -34,7 +34,7 @@ def login():
     
     result = user.login(email, password)
     
-    return jsonify({'message': result, res:"00"}), 200
+    return jsonify({'message': result, 'res':"00"}), 200
 
 @app.route('/create_task', methods=['POST'])
 def create_task():
@@ -46,7 +46,7 @@ def create_task():
     status = data.get('status')
 
     result = user.add_task(email, task,id, status)
-    return jsonify({'message': result, res:"00"}), 200
+    return jsonify({'message': result, 'res':"00"}), 200
 
 @app.route('/get_tasks', methods=['POST'])
 def get_tasks():
@@ -54,7 +54,7 @@ def get_tasks():
     data = request.get_json()
     email = data.get('email')
     result = user.get_tasks(email)
-    return jsonify({'message': result,res:"00"})
+    return jsonify({'message': result, 'res':"00"})
 
 @app.route('/update_task', methods=['PUT'])
 def update_task():
