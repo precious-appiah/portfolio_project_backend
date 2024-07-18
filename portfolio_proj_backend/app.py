@@ -33,6 +33,8 @@ def login():
     password = data.get('password')
     
     result = user.login(email, password)
+    if result === "Incorrect password or email" or "Email not registered, please sign up"
+        return jsonify({'message': result, 'res':"11"}), 400
     
     return jsonify({'message': result, 'res':"00"}), 200
 
